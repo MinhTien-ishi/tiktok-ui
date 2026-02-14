@@ -27,6 +27,8 @@ import styles from "./Header.module.scss";
 import images from "~/assets/images";
 import AccountItem from "~/components/AccountItem";
 import Menu from "~/components/Popper/Menu";
+import { InboxIcon, MessageIcon, UploadIcon } from "~/components/Icon";
+import Image from "~/components/Image";
 
 const cx = classNames.bind(styles);
 
@@ -155,7 +157,26 @@ function Header() {
                                 placement="bottom"
                             >
                                 <button className={cx("action-btn")}>
-                                    <FontAwesomeIcon icon={faCircleUp} />
+                                    <UploadIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy
+                                delay={[0, 200]}
+                                content="Message"
+                                placement="bottom"
+                            >
+                                <button className={cx("action-btn")}>
+                                    <MessageIcon />
+                                </button>
+                            </Tippy>
+                            <Tippy
+                                delay={[0, 200]}
+                                content="Inbox"
+                                placement="bottom"
+                            >
+                                <button className={cx("action-btn")}>
+                                    <InboxIcon />
+                                    <span className={cx("badge")}>12</span>
                                 </button>
                             </Tippy>
                         </>
@@ -170,9 +191,9 @@ function Header() {
                         onChange={handleMenuChange}
                     >
                         {currentUser ? (
-                            <img
-                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7332975912608563202~tplv-tiktokx-cropcenter:720:720.jpeg?dr=14579&refresh_token=b8e43b50&x-expires=1771149600&x-signature=ciBfCbg%2BBO5Z5s4mgwiN9f8ygVY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
+                            <Image
                                 className={cx("user-avatar")}
+                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7332975912608563202~tplv-tiktokx-cropcenter:720:720.jpeg?dr=14579&refresh_token=b8e43b50&x-expires=1771149600&x-signature=ciBfCbg%2BBO5Z5s4mgwiN9f8ygVY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
                                 alt="Nguyen Van A"
                             />
                         ) : (
