@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames/bind";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
+import { useDebounce } from "~/Hooks";
 import styles from "./Search.module.scss";
 
 const cx = classNames.bind(styles);
@@ -20,18 +21,20 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounced = useDebounce(searchValue, 500);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
-            setSearchResult([])
+        if (!debounced.trim()) {
+            setSearchResult([]);
             return;
         }
 
         setLoading(true);
 
         fetch(
-            `https://jsonplaceholder.typicode.com/users?q=${encodeURIComponent(searchValue)}`,
+            `https://jsonplaceholder.typicode.com/users?q=${encodeURIComponent(debounced)}`,
         )
             .then((res) => res.json())
             .then((res) => {
@@ -41,7 +44,7 @@ function Search() {
             .catch(() => {
                 setLoading(false);
             });
-    }, [searchValue]);
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue("");
