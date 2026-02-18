@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import {
     faCircleXmark,
     faMagnifyingGlass,
     faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
-
+import classNames from "classnames/bind";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import classNames from "classnames/bind";
+
+import * as searchServices from "~/apiServices/searchServices";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
 import { useDebounce } from "~/Hooks";
@@ -31,19 +33,16 @@ function Search() {
             return;
         }
 
-        setLoading(true);
+        const fetchApi = async () => {
+            setLoading(true);
 
-        fetch(
-            `https://jsonplaceholder.typicode.com/users?q=${encodeURIComponent(debounced)}`,
-        )
-            .then((res) => res.json())
-            .then((res) => {
-                setSearchResult(res);
-                setLoading(false);
-            })
-            .catch(() => {
-                setLoading(false);
-            });
+            const result = await searchServices.search(debounced);
+
+            setSearchResult(result);
+            setLoading(false);
+        };
+
+        fetchApi();
     }, [debounced]);
 
     const handleClear = () => {
