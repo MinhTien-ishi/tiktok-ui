@@ -54,12 +54,12 @@ function Menu({
                                 title="Language"
                                 onBack={() => {
                                     setHistory((prev) =>
-                                        prev.splice(0, prev.length - 1),
+                                        prev.slice(0, prev.length - 1),
                                     );
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx("menu-body")}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
