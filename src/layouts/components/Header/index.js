@@ -14,7 +14,7 @@ import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
 import { Link } from "react-router-dom";
 
-import routesConfig from "~/config/routes";
+import config from "~/config";
 import Button from "~/components/Button";
 import styles from "./Header.module.scss";
 import images from "~/assets/images";
@@ -94,12 +94,10 @@ function Header() {
     return (
         <header className={cx("wrapper")}>
             <div className={cx("inner")}>
-                <Link to={routesConfig.home} className={cx("logo-link")}>
+                <Link to={config.routes.home} className={cx("logo-link")}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
-
                 <Search />
-
                 <div className={cx("actions")}>
                     {currentUser ? (
                         <>
@@ -145,7 +143,7 @@ function Header() {
                         {currentUser ? (
                             <Image
                                 className={cx("user-avatar")}
-                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7332975912608563202~tplv-tiktokx-cropcenter:720:720.jpeg?dr=14579&refresh_token=b8e43b50&x-expires=1771149600&x-signature=ciBfCbg%2BBO5Z5s4mgwiN9f8ygVY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
+                                src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/7332975912608563202~tplv-tiktokx-cropcenter:720:720.jpeg?dr=14579&refresh_token=028f81a0&x-expires=1771786800&x-signature=GWbY36AYjBD0JFKzhmKQxfnqZ1I%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
                                 alt="Nguyen Van A"
                             />
                         ) : (

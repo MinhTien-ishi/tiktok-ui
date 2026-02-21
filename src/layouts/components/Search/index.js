@@ -9,10 +9,10 @@ import classNames from "classnames/bind";
 import HeadlessTippy from "@tippyjs/react/headless";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import * as searchServices from "~/apiServices/searchServices";
+import * as searchServices from "~/services/searchService";
 import { Wrapper as PopperWrapper } from "~/components/Popper";
 import AccountItem from "~/components/AccountItem";
-import { useDebounce } from "~/Hooks";
+import { useDebounce } from "~/hooks";
 import styles from "./Search.module.scss";
 
 const cx = classNames.bind(styles);
